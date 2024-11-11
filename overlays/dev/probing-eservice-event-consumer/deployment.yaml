@@ -49,9 +49,8 @@ spec:
                   key: API_OPERATIONS_BASEURL
             - name: KAFKA_CLIENT_ID
               valueFrom:
-                configMapKeyRef:
-                  name: interop-be-probing-eservice-event-consumer
-                  key: KAFKA_CLIENT_ID
+                fieldRef:
+                  fieldPath: metadata.name
             - name: KAFKA_GROUP_ID
               valueFrom:
                 configMapKeyRef:
@@ -62,11 +61,6 @@ spec:
                 configMapKeyRef:
                   name: interop-be-probing-eservice-event-consumer
                   key: KAFKA_BROKERS
-            - name: KAFKA_DISABLE_AWS_IAM_AUTH
-              valueFrom:
-                configMapKeyRef:
-                  name: interop-be-probing-eservice-event-consumer
-                  key: KAFKA_DISABLE_AWS_IAM_AUTH
             - name: KAFKA_TOPIC
               valueFrom:
                 configMapKeyRef:
