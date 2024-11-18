@@ -1,0 +1,95 @@
+deployment:
+  name: interop-be-probing-eservice-operations
+  replicas: 1
+  image:
+    repository: ghcr.io/pagopa/interop-probing-core/interop-be-probing-eservice-operations
+    tag: 2.0.0-rc2
+  resources:
+    limits:
+      cpu: 500m
+      memory: 512Mi
+    requests:
+      cpu: 500m
+      memory: 512Mi
+  env:
+    - name: HOST
+      valueFrom:
+        configMapKeyRef:
+          name: interop-be-probing-eservice-operations
+          key: HOST
+    - name: PORT
+      valueFrom:
+        configMapKeyRef:
+          name: interop-be-probing-eservice-operations
+          key: PORT
+    - name: LOG_LEVEL
+      valueFrom:
+        configMapKeyRef:
+          name: interop-be-probing-common
+          key: LOG_LEVEL
+    - name: AWS_REGION
+      valueFrom:
+        configMapKeyRef:
+          name: interop-be-probing-common
+          key: AWS_REGION
+    - name: DB_HOST
+      valueFrom:
+        configMapKeyRef:
+          name: interop-be-probing-eservice-operations
+          key: DB_HOST
+    - name: DB_NAME
+      valueFrom:
+        configMapKeyRef:
+          name: interop-be-probing-eservice-operations
+          key: DB_NAME
+    - name: DB_PORT
+      valueFrom:
+        configMapKeyRef:
+          name: interop-be-probing-eservice-operations
+          key: DB_PORT
+    - name: SCHEMA_NAME
+      valueFrom:
+        configMapKeyRef:
+          name: interop-be-probing-eservice-operations
+          key: SCHEMA_NAME
+    - name: TOLERANCE_MULTIPLIER_IN_MINUTES
+      valueFrom:
+        configMapKeyRef:
+          name: interop-be-probing-eservice-operations
+          key: TOLERANCE_MULTIPLIER_IN_MINUTES
+    - name: POLLING_FREQUENCY_THRESHOLD
+      valueFrom:
+        configMapKeyRef:
+          name: interop-be-probing-eservice-operations
+          key: POLLING_FREQUENCY_THRESHOLD
+    - name: CORS_ORIGIN_ALLOWED
+      valueFrom:
+        configMapKeyRef:
+          name: interop-be-probing-eservice-operations
+          key: CORS_ORIGIN_ALLOWED
+
+configMap:
+  HOST: "0.0.0.0"
+  PORT: "8080"
+  DB_HOST: "interop-probing-operational-database-uat.cluster-cyhshel7tys6.eu-central-1.rds.amazonaws.com"
+  DB_NAME: "interop_probing_operational"
+  DB_PORT: "5432"
+  SCHEMA_NAME: "interop_probing_operational"
+  TOLERANCE_MULTIPLIER_IN_MINUTES: "3"
+  POLLING_FREQUENCY_THRESHOLD: "3"
+  CORS_ORIGIN_ALLOWED: "*"
+  INTEROP_PROBING_OPERATIONS_APP_NAME: "interop-be-probing-eservice-operations"
+
+autoscaling:
+  enabled: true
+  minReplicas: 1
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 80
+
+service:
+  name: interop-be-probing-eservice-operations
+  type: NodePort
+  ports:
+    - port: 80
+      targetPort: 8080
+      protocol: TCP

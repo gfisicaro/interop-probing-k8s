@@ -1,0 +1,44 @@
+deployment:
+  name: interop-be-probing-response-updater
+  replicas: 1
+  image:
+    repository: ghcr.io/pagopa/interop-probing-core/interop-be-probing-response-updater
+    tag: 2.0.0-rc2
+  resources:
+    limits:
+      cpu: 500m
+      memory: 512Mi
+    requests:
+      cpu: 500m
+      memory: 512Mi
+  env:
+    - name: LOG_LEVEL
+      valueFrom:
+        configMapKeyRef:
+          name: interop-be-probing-common
+          key: LOG_LEVEL
+    - name: AWS_REGION
+      valueFrom:
+        configMapKeyRef:
+          name: interop-be-probing-common
+          key: AWS_REGION
+    - name: CONSUMER_POLLING_TIMEOUT_IN_SECONDS
+      valueFrom:
+        configMapKeyRef:
+          name: interop-be-probing-common
+          key: CONSUMER_POLLING_TIMEOUT_IN_SECONDS
+    - name: API_OPERATIONS_BASEURL
+      valueFrom:
+        configMapKeyRef:
+          name: interop-be-probing-common
+          key: API_OPERATIONS_BASEURL
+
+configMap:
+  SQS_ENDPOINT_POLL_RESULT_QUEUE: "https://sqs.eu-central-1.amazonaws.com/010158505074/eservice_polling_result_queue"
+  INTEROP_PROBING_RESPONSE_UPDATER_NAME: "interop-be-probing-response-updater"
+
+autoscaling:
+  enabled: true
+  minReplicas: 1
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 80
