@@ -1,16 +1,19 @@
-cronjob:
-  name: probing-eservice-registry-reader
-  schedule: "0 */6 * * *"
-  concurrencyPolicy: Forbid
-  activeDeadlineSeconds: 3600
-  successfulJobsHistoryLimit: 0
-  failedJobsHistoryLimit: 1
-  suspend: false
-  image:
-    repositoryPrefix: ghcr.io/pagopa/interop-probing-core/interop-be-probing-eservice-registry-reader
-    tag: develop
-    imagePullPolicy: Always
-  restartPolicy: OnFailure
+name: probing-eservice-registry-reader
+schedule: "0 */6 * * *"
+concurrencyPolicy: Forbid
+activeDeadlineSeconds: 3600
+successfulJobsHistoryLimit: 0
+failedJobsHistoryLimit: 1
+suspend: false
+restartPolicy: OnFailure
+
+configmap:
+  S3_BUCKET_NAME: "interop-probing-eservices-dev"
+  S3_BUCKET_KEY: "eservices.json"
+  SQS_GROUP_ID: "eservice_registry_reader"
+  INTEROP_PROBING_ESERVICE_REGISTRY_READER_NAME: "interop-be-probing-eservice-registry-reader"
+
+job:
   envFromConfigmaps:
     LOG_LEVEL: "interop-be-probing-common.LOG_LEVEL"
     AWS_REGION: "interop-be-probing-common.AWS_REGION"
@@ -18,8 +21,3 @@ cronjob:
     S3_BUCKET_KEY: "interop-be-probing-eservice-registry-reader.S3_BUCKET_KEY"
     SQS_GROUP_ID: "interop-be-probing-eservice-registry-reader.SQS_GROUP_ID"
  
-configmap:
-  S3_BUCKET_NAME: "interop-probing-eservices-dev"
-  S3_BUCKET_KEY: "eservices.json"
-  SQS_GROUP_ID: "eservice_registry_reader"
-  INTEROP_PROBING_ESERVICE_REGISTRY_READER_NAME: "interop-be-probing-eservice-registry-reader"

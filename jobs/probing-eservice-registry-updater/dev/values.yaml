@@ -1,19 +1,17 @@
-cronjob:
-  name: probing-eservice-registry-updater
-  schedule: "0 * * * *"
-  concurrencyPolicy: Forbid
-  activeDeadlineSeconds: 3600
-  successfulJobsHistoryLimit: 0
-  failedJobsHistoryLimit: 1
-  suspend: false
-  image:
-    repositoryPrefix: ghcr.io/pagopa/interop-probing-core/interop-be-probing-eservice-registry-updater
-    tag: develop
-    imagePullPolicy: Always
-  restartPolicy: OnFailure
+name: probing-eservice-registry-updater
+schedule: "0 * * * *"
+concurrencyPolicy: Forbid
+activeDeadlineSeconds: 3600
+successfulJobsHistoryLimit: 0
+failedJobsHistoryLimit: 1
+suspend: false
+restartPolicy: OnFailure
+
+configmap:
+  INTEROP_PROBING_ESERVICE_REGISTRY_UPDATER_NAME: "interop-be-probing-eservice-registry-updater"
+
+job:
   envFromConfigmaps:
     LOG_LEVEL: "interop-be-probing-common.LOG_LEVEL"
     AWS_REGION: "interop-be-probing-common.AWS_REGION"
  
-configmap:
-  INTEROP_PROBING_ESERVICE_REGISTRY_UPDATER_NAME: "interop-be-probing-eservice-registry-updater"
