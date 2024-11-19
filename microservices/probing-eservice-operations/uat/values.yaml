@@ -1,62 +1,21 @@
+name: "probing-eservice-operations"
+roleArn: ""
+
 deployment:
   name: interop-be-probing-eservice-operations
   replicas: 1
   envFromConfigmaps:
-    - name: HOST
-      valueFrom:
-        configMapKeyRef:
-          name: interop-be-probing-eservice-operations
-          key: HOST
-    - name: PORT
-      valueFrom:
-        configMapKeyRef:
-          name: interop-be-probing-eservice-operations
-          key: PORT
-    - name: LOG_LEVEL
-      valueFrom:
-        configMapKeyRef:
-          name: interop-be-probing-common
-          key: LOG_LEVEL
-    - name: AWS_REGION
-      valueFrom:
-        configMapKeyRef:
-          name: interop-be-probing-common
-          key: AWS_REGION
-    - name: DB_HOST
-      valueFrom:
-        configMapKeyRef:
-          name: interop-be-probing-eservice-operations
-          key: DB_HOST
-    - name: DB_NAME
-      valueFrom:
-        configMapKeyRef:
-          name: interop-be-probing-eservice-operations
-          key: DB_NAME
-    - name: DB_PORT
-      valueFrom:
-        configMapKeyRef:
-          name: interop-be-probing-eservice-operations
-          key: DB_PORT
-    - name: SCHEMA_NAME
-      valueFrom:
-        configMapKeyRef:
-          name: interop-be-probing-eservice-operations
-          key: SCHEMA_NAME
-    - name: TOLERANCE_MULTIPLIER_IN_MINUTES
-      valueFrom:
-        configMapKeyRef:
-          name: interop-be-probing-eservice-operations
-          key: TOLERANCE_MULTIPLIER_IN_MINUTES
-    - name: POLLING_FREQUENCY_THRESHOLD
-      valueFrom:
-        configMapKeyRef:
-          name: interop-be-probing-eservice-operations
-          key: POLLING_FREQUENCY_THRESHOLD
-    - name: CORS_ORIGIN_ALLOWED
-      valueFrom:
-        configMapKeyRef:
-          name: interop-be-probing-eservice-operations
-          key: CORS_ORIGIN_ALLOWED
+  HOST: "interop-be-probing-eservice-operations.HOST"
+  PORT: "interop-be-probing-eservice-operations.PORT"
+  LOG_LEVEL: "interop-be-probing-common.LOG_LEVEL"
+  AWS_REGION: "interop-be-probing-common.AWS_REGION"
+  DB_HOST: "common-probing-store.DB_HOST"
+  DB_NAME: "common-probing-store.DB_NAME"  
+  DB_PORT: "common-probing-store.DB_PORT" 
+  SCHEMA_NAME: "interop-be-probing-eservice-operations.SCHEMA_NAME"  
+  TOLERANCE_MULTIPLIER_IN_MINUTES: "interop-be-probing-eservice-operations.TOLERANCE_MULTIPLIER_IN_MINUTES"
+  POLLING_FREQUENCY_THRESHOLD: "interop-be-probing-eservice-operations.POLLING_FREQUENCY_THRESHOLD"  
+  CORS_ORIGIN_ALLOWED: "interop-be-probing-eservice-operations.CORS_ORIGIN_ALLOWED"
 
 configMap:
   HOST: "0.0.0.0"

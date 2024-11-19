@@ -1,33 +1,16 @@
+name: "probing-statistics-api"
+roleArn: ""
+
 deployment:
   name: interop-be-probing-statistics-api
   replicas: 1
   envFromConfigmaps:
-    - name: HOST
-      valueFrom:
-        configMapKeyRef:
-          name: interop-be-probing-statistics-api
-          key: HOST
-    - name: PORT
-      valueFrom:
-        configMapKeyRef:
-          name: interop-be-probing-statistics-api
-          key: PORT
-    - name: LOG_LEVEL
-      valueFrom:
-        configMapKeyRef:
-          name: interop-be-probing-common
-          key: LOG_LEVEL
-    - name: GRAPH_MAX_MONTHS
-      valueFrom:
-        configMapKeyRef:
-          name: interop-be-probing-statistics-api
-          key: GRAPH_MAX_MONTHS
-    - name: GRAPH_PERFORMANCE_TOLERANCE
-      valueFrom:
-        configMapKeyRef:
-          name: interop-be-probing-statistics-api
-          key: GRAPH_PERFORMANCE_TOLERANCE
-
+  HOST: "interop-be-probing-statistics-api.HOST"
+  PORT: "interop-be-probing-statistics-api.PORT"
+  LOG_LEVEL: "interop-be-probing-common.LOG_LEVEL"  
+  GRAPH_MAX_MONTHS: "interop-be-probing-statistics-api.GRAPH_MAX_MONTHS"
+  GRAPH_PERFORMANCE_TOLERANCE: "interop-be-probing-statistics-api.GRAPH_PERFORMANCE_TOLERANCE"
+ 
 configMap:
   TIMESTREAM_DATABASE: "interop_probing_telemetry"
   TIMESTREAM_TABLE: "probing_telemetry"

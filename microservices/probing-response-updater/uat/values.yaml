@@ -1,27 +1,14 @@
+name: "probing-response-updater"
+roleArn: ""
+
 deployment:
   name: interop-be-probing-response-updater
   replicas: 1
   envFromConfigmaps:
-    - name: LOG_LEVEL
-      valueFrom:
-        configMapKeyRef:
-          name: interop-be-probing-common
-          key: LOG_LEVEL
-    - name: AWS_REGION
-      valueFrom:
-        configMapKeyRef:
-          name: interop-be-probing-common
-          key: AWS_REGION
-    - name: CONSUMER_POLLING_TIMEOUT_IN_SECONDS
-      valueFrom:
-        configMapKeyRef:
-          name: interop-be-probing-common
-          key: CONSUMER_POLLING_TIMEOUT_IN_SECONDS
-    - name: API_OPERATIONS_BASEURL
-      valueFrom:
-        configMapKeyRef:
-          name: interop-be-probing-common
-          key: API_OPERATIONS_BASEURL
+  LOG_LEVEL: "interop-be-probing-common.LOG_LEVEL"
+  AWS_REGION: "interop-be-probing-common.AWS_REGION"  
+  CONSUMER_POLLING_TIMEOUT_IN_SECONDS: "interop-be-probing-common.CONSUMER_POLLING_TIMEOUT_IN_SECONDS"  
+  API_OPERATIONS_BASEURL: "interop-be-probing-common.API_OPERATIONS_BASEURL"
 
 configMap:
   SQS_ENDPOINT_POLL_RESULT_QUEUE: "https://sqs.eu-central-1.amazonaws.com/010158505074/eservice_polling_result_queue"
