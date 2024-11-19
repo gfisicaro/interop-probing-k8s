@@ -1,17 +1,7 @@
 deployment:
   name: interop-be-probing-statistics-api
   replicas: 1
-  image:
-    repository: ghcr.io/pagopa/interop-probing-core/interop-be-probing-statistics-api
-    tag: 2.0.0-rc2
-  resources:
-    limits:
-      cpu: 500m
-      memory: 512Mi
-    requests:
-      cpu: 500m
-      memory: 512Mi
-  env:
+  envFromConfigmaps:
     - name: HOST
       valueFrom:
         configMapKeyRef:
@@ -57,7 +47,6 @@ autoscaling:
 
 service:
   name: interop-be-probing-statistics-api
-  type: NodePort
   ports:
     - port: 80
       targetPort: 8080

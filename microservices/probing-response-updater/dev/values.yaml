@@ -1,17 +1,7 @@
 deployment:
   name: interop-be-probing-response-updater
   replicas: 1
-  image:
-    repository: ghcr.io/pagopa/interop-probing-core/interop-be-probing-response-updater
-    tag: develop
-  resources:
-    limits:
-      cpu: 500m
-      memory: 512Mi
-    requests:
-      cpu: 500m
-      memory: 512Mi
-  env:
+  envFromConfigmaps:
     - name: LOG_LEVEL
       valueFrom:
         configMapKeyRef:

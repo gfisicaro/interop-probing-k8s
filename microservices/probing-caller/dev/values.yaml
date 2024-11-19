@@ -1,67 +1,20 @@
+name: "probing-caller"
+roleArn: ""
+
 deployment:
   name: interop-be-probing-eservice-registry-caller
   replicas: 1
-  image:
-    repository: ghcr.io/pagopa/interop-probing-core/interop-be-probing-caller
-    tag: develop
-  resources:
-    limits:
-      cpu: 500m
-      memory: 512Mi
-    requests:
-      cpu: 500m
-      memory: 512Mi
-  env:
-    - name: CONSUMER_POLLING_TIMEOUT_IN_SECONDS
-      valueFrom:
-        configMapKeyRef:
-          name: interop-be-probing-common
-          key: CONSUMER_POLLING_TIMEOUT_IN_SECONDS
-    - name: LOG_LEVEL
-      valueFrom:
-        configMapKeyRef:
-          name: interop-be-probing-common
-          key: LOG_LEVEL
-    - name: AWS_REGION
-      valueFrom:
-        configMapKeyRef:
-          name: interop-be-probing-common
-          key: AWS_REGION
-    - name: SQS_ENDPOINT_POLL_QUEUE
-      valueFrom:
-        configMapKeyRef:
-          name: interop-be-probing-eservice-registry-caller
-          key: SQS_ENDPOINT_POLL_QUEUE
-    - name: SQS_ENDPOINT_POLL_RESULT_QUEUE
-      valueFrom:
-        configMapKeyRef:
-          name: interop-be-probing-eservice-registry-caller
-          key: SQS_ENDPOINT_POLL_RESULT_QUEUE
-    - name: SQS_ENDPOINT_TELEMETRY_RESULT_QUEUE
-      valueFrom:
-        configMapKeyRef:
-          name: interop-be-probing-eservice-registry-caller
-          key: SQS_ENDPOINT_TELEMETRY_RESULT_QUEUE
-    - name: JWT_PAYLOAD_EXPIRE_TIME_IN_SEC
-      valueFrom:
-        configMapKeyRef:
-          name: interop-be-probing-eservice-registry-caller
-          key: JWT_PAYLOAD_EXPIRE_TIME_IN_SEC
-    - name: JWT_PAYLOAD_ISSUER
-      valueFrom:
-        configMapKeyRef:
-          name: interop-be-probing-eservice-registry-caller
-          key: JWT_PAYLOAD_ISSUER
-    - name: JWT_PAYLOAD_SUBJECT
-      valueFrom:
-        configMapKeyRef:
-          name: interop-be-probing-eservice-registry-caller
-          key: JWT_PAYLOAD_SUBJECT
-    - name: JWT_PAYLOAD_KID_KMS
-      valueFrom:
-        configMapKeyRef:
-          name: interop-be-probing-eservice-registry-caller
-          key: JWT_PAYLOAD_KID_KMS
+  envFromConfigmaps:
+    CONSUMER_POLLING_TIMEOUT_IN_SECONDS: "interop-be-probing-common.CONSUMER_POLLING_TIMEOUT_IN_SECONDS"
+    LOG_LEVEL: "interop-be-probing-common.LOG_LEVEL"
+    AWS_REGION: "interop-be-probing-common.AWS_REGION"
+    SQS_ENDPOINT_POLL_QUEUE: "interop-be-probing-eservice-registry-caller.SQS_ENDPOINT_POLL_QUEUE"
+    SQS_ENDPOINT_POLL_RESULT_QUEUE: "interop-be-probing-eservice-registry-caller.SQS_ENDPOINT_POLL_RESULT_QUEUE"
+    SQS_ENDPOINT_TELEMETRY_RESULT_QUEUE: "interop-be-probing-eservice-registry-caller.SQS_ENDPOINT_TELEMETRY_RESULT_QUEUE"
+    JWT_PAYLOAD_EXPIRE_TIME_IN_SEC: "interop-be-probing-eservice-registry-caller.JWT_PAYLOAD_EXPIRE_TIME_IN_SEC"
+    JWT_PAYLOAD_ISSUER: "interop-be-probing-eservice-registry-caller.JWT_PAYLOAD_ISSUER"
+    JWT_PAYLOAD_SUBJECT: "interop-be-probing-eservice-registry-caller.JWT_PAYLOAD_SUBJECT"
+    JWT_PAYLOAD_KID_KMS: "interop-be-probing-eservice-registry-caller.JWT_PAYLOAD_KID_KMS"
 
 configMap:
   SQS_ENDPOINT_POLL_QUEUE: "https://sqs.eu-central-1.amazonaws.com/774300547186/eservice_polling_queue"

@@ -1,52 +1,17 @@
+name: "probing-api"
+roleArn: ""
+
 deployment:
   name: interop-be-probing-api
   replicas: 1
-  image:
-    repository: ghcr.io/pagopa/interop-probing-core/interop-be-probing-api
-    tag: 2.0.0-rc2
-  resources:
-    limits:
-      cpu: 500m
-      memory: 512Mi
-    requests:
-      cpu: 500m
-      memory: 512Mi
-  env:
-    - name: HOST
-      valueFrom:
-        configMapKeyRef:
-          name: interop-be-probing-api
-          key: HOST
-    - name: PORT
-      valueFrom:
-        configMapKeyRef:
-          name: interop-be-probing-api
-          key: PORT
-    - name: LOG_LEVEL
-      valueFrom:
-        configMapKeyRef:
-          name: interop-be-probing-common
-          key: LOG_LEVEL
-    - name: AWS_REGION
-      valueFrom:
-        configMapKeyRef:
-          name: interop-be-probing-common
-          key: AWS_REGION
-    - name: API_OPERATIONS_BASEURL
-      valueFrom:
-        configMapKeyRef:
-          name: interop-be-probing-common
-          key: API_OPERATIONS_BASEURL
-    - name: CORS_ORIGIN_ALLOWED
-      valueFrom:
-        configMapKeyRef:
-          name: interop-be-probing-api
-          key: CORS_ORIGIN_ALLOWED
-    - name: TOLERANCE_MULTIPLIER_IN_MINUTES
-      valueFrom:
-        configMapKeyRef:
-          name: interop-be-probing-api
-          key: TOLERANCE_MULTIPLIER_IN_MINUTES
+    envFromConfigmaps:
+    HOST: "interop-be-probing-api.HOST"
+    PORT: "interop-be-probing-api.PORT"
+    LOG_LEVEL: "interop-be-probing-common.LOG_LEVEL"
+    AWS_REGION: "interop-be-probing-common.AWS_REGION"
+    API_OPERATIONS_BASEURL: "interop-be-probing-common.API_OPERATIONS_BASEURL"
+    CORS_ORIGIN_ALLOWED: "interop-be-probing-api.CORS_ORIGIN_ALLOWED"
+    TOLERANCE_MULTIPLIER_IN_MINUTES: "interop-be-probing-api.TOLERANCE_MULTIPLIER_IN_MINUTES"
 
 configMap:
   HOST: "0.0.0.0"
@@ -63,7 +28,6 @@ autoscaling:
 
 service:
   name: interop-be-probing-api
-  type: NodePort
   ports:
     - port: 80
       targetPort: 8080

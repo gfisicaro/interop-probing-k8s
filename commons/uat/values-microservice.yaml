@@ -4,7 +4,7 @@ replicas: 1
 techStack: "nodejs"
 
 image:
-  repositoryPrefix: "058264142001.dkr.ecr.eu-south-1.amazonaws.com"
+  repositoryPrefix: "ghcr.io/pagopa/interop-probing-core/interop-be-probing-api"
   imagePullPolicy: Always
   tag: $IMAGE_TAG_PLACEHOLDER
   digest: $IMAGE_DIGEST_PLACEHOLDER
@@ -15,8 +15,8 @@ deployment:
 
 resources:
   requests:
-    cpu: "500m"
-    memory: "512Mi"
+    cpu: "1"
+    memory: "2Gi"
   limits:
-    cpu: "500m"
-    memory: "512Mi"
+    cpu: "1"
+    memory: "2Gi"

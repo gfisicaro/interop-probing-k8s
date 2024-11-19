@@ -10,13 +10,6 @@ cronjob:
     repositoryPrefix: ghcr.io/pagopa/interop-probing-core/interop-be-probing-eservice-registry-reader
     tag: develop
     imagePullPolicy: Always
-  resources:
-    limits:
-      cpu: 500m
-      memory: 512Mi
-    requests:
-      cpu: 500m
-      memory: 512Mi
   restartPolicy: OnFailure
   envFromConfigmaps:
     LOG_LEVEL: "interop-be-probing-common.LOG_LEVEL"
