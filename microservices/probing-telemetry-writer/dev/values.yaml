@@ -1,5 +1,9 @@
 name: "interop-be-probing-telemetry-writer"
+
 roleArn: ""
+
+service:
+  create: false
 
 configMap:
   SQS_ENDPOINT_TELEMETRY_RESULT_QUEUE: "https://sqs.eu-central-1.amazonaws.com/774300547186/eservice_telemetry_result_queue"
