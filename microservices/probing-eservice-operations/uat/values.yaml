@@ -26,7 +26,6 @@ deployment:
   envFromConfigmaps:
   HOST: "interop-be-probing-eservice-operations.HOST"
   PORT: "interop-be-probing-eservice-operations.PORT"
-  LOG_LEVEL: "interop-be-probing-common.LOG_LEVEL"
   AWS_REGION: "interop-be-probing-common.AWS_REGION"
   DB_HOST: "common-probing-store.DB_HOST"
   DB_NAME: "common-probing-store.DB_NAME"  

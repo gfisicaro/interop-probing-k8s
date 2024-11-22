@@ -21,7 +21,6 @@ deployment:
   envFromConfigmaps:
     HOST: "interop-be-probing-api.HOST"
     PORT: "interop-be-probing-api.PORT"
-    LOG_LEVEL: "interop-be-probing-common.LOG_LEVEL"
     AWS_REGION: "interop-be-probing-common.AWS_REGION"
     API_OPERATIONS_BASEURL: "interop-be-probing-common.API_OPERATIONS_BASEURL"
     CORS_ORIGIN_ALLOWED: "interop-be-probing-api.CORS_ORIGIN_ALLOWED"

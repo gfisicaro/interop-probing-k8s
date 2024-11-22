@@ -14,8 +14,9 @@ configmap:
   INTEROP_PROBING_ESERVICE_REGISTRY_READER_NAME: "interop-be-probing-eservice-registry-reader"
 
 job:
+  env:
+    LOG_LEVEL: INFO
   envFromConfigmaps:
-    LOG_LEVEL: "interop-be-probing-common.LOG_LEVEL"
     AWS_REGION: "interop-be-probing-common.AWS_REGION"
     S3_BUCKET_NAME: "interop-be-probing-eservice-registry-reader.S3_BUCKET_NAME"
     S3_BUCKET_KEY: "interop-be-probing-eservice-registry-reader.S3_BUCKET_KEY"
