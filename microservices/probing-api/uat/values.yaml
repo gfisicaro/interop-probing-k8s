@@ -9,8 +9,6 @@ service:
       protocol: TCP
 
 configMap:
-  HOST: "0.0.0.0"
-  PORT: "8080"
   CORS_ORIGIN_ALLOWED: "*"
   TOLERANCE_MULTIPLIER_IN_MINUTES: "3"
   INTEROP_PROBING_API_APP_NAME: "interop-be-probing-api"
@@ -18,9 +16,10 @@ configMap:
 deployment:
   name: interop-be-probing-api
   replicas: 1
+  env:
+    HOST: "0.0.0.0"
+    PORT: "8080"
   envFromConfigmaps:
-    HOST: "interop-be-probing-api.HOST"
-    PORT: "interop-be-probing-api.PORT"
     AWS_REGION: "interop-be-probing-common.AWS_REGION"
     API_OPERATIONS_BASEURL: "interop-be-probing-common.API_OPERATIONS_BASEURL"
     CORS_ORIGIN_ALLOWED: "interop-be-probing-api.CORS_ORIGIN_ALLOWED"

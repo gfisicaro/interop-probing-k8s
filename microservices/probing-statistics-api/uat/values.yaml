@@ -16,15 +16,14 @@ configMap:
   GRAPH_PERFORMANCE_TOLERANCE: "2"
   GRAPH_FAILURE_TOLERANCE: "4"
   GRAPH_MAX_MONTHS: "3"
-  HOST: "0.0.0.0"
-  PORT: "8080"
 
 deployment:
   name: interop-be-probing-statistics-api
   replicas: 1
+  env:
+    HOST: "0.0.0.0"
+    PORT: "8080"
   envFromConfigmaps:
-    HOST: "interop-be-probing-statistics-api.HOST"
-    PORT: "interop-be-probing-statistics-api.PORT"
     GRAPH_MAX_MONTHS: "interop-be-probing-statistics-api.GRAPH_MAX_MONTHS"
     GRAPH_PERFORMANCE_TOLERANCE: "interop-be-probing-statistics-api.GRAPH_PERFORMANCE_TOLERANCE"
 

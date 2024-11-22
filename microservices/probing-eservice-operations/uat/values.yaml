@@ -9,8 +9,7 @@ service:
       protocol: TCP
 
 configMap:
-  HOST: "0.0.0.0"
-  PORT: "8080"
+
   DB_HOST: "interop-probing-operational-database-uat.cluster-cyhshel7tys6.eu-central-1.rds.amazonaws.com"
   DB_NAME: "interop_probing_operational"
   DB_PORT: "5432"
@@ -23,17 +22,18 @@ configMap:
 deployment:
   name: interop-be-probing-eservice-operations
   replicas: 1
+  env:
+    HOST: "0.0.0.0"
+    PORT: "8080"
   envFromConfigmaps:
-  HOST: "interop-be-probing-eservice-operations.HOST"
-  PORT: "interop-be-probing-eservice-operations.PORT"
-  AWS_REGION: "interop-be-probing-common.AWS_REGION"
-  DB_HOST: "common-probing-store.DB_HOST"
-  DB_NAME: "common-probing-store.DB_NAME"  
-  DB_PORT: "common-probing-store.DB_PORT" 
-  SCHEMA_NAME: "interop-be-probing-eservice-operations.SCHEMA_NAME"  
-  TOLERANCE_MULTIPLIER_IN_MINUTES: "interop-be-probing-eservice-operations.TOLERANCE_MULTIPLIER_IN_MINUTES"
-  POLLING_FREQUENCY_THRESHOLD: "interop-be-probing-eservice-operations.POLLING_FREQUENCY_THRESHOLD"  
-  CORS_ORIGIN_ALLOWED: "interop-be-probing-eservice-operations.CORS_ORIGIN_ALLOWED"
+    AWS_REGION: "interop-be-probing-common.AWS_REGION"
+    DB_HOST: "common-probing-store.DB_HOST"
+    DB_NAME: "common-probing-store.DB_NAME"  
+    DB_PORT: "common-probing-store.DB_PORT" 
+    SCHEMA_NAME: "interop-be-probing-eservice-operations.SCHEMA_NAME"  
+    TOLERANCE_MULTIPLIER_IN_MINUTES: "interop-be-probing-eservice-operations.TOLERANCE_MULTIPLIER_IN_MINUTES"
+    POLLING_FREQUENCY_THRESHOLD: "interop-be-probing-eservice-operations.POLLING_FREQUENCY_THRESHOLD"  
+    CORS_ORIGIN_ALLOWED: "interop-be-probing-eservice-operations.CORS_ORIGIN_ALLOWED"
 
 autoscaling:
   enabled: true

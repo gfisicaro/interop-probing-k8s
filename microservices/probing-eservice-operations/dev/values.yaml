@@ -9,8 +9,6 @@ service:
       protocol: TCP
 
 configMap:
-  HOST: "0.0.0.0"
-  PORT: "8080"
   SCHEMA_NAME: "interop_probing_operational"
   TOLERANCE_MULTIPLIER_IN_MINUTES: "3"
   POLLING_FREQUENCY_THRESHOLD: "3"
@@ -20,9 +18,10 @@ configMap:
 deployment:
   name: interop-be-probing-eservice-operations
   replicas: 1
+  env:
+    HOST: "0.0.0.0"
+    PORT: "8080"
   envFromConfigmaps:
-    HOST: "interop-be-probing-eservice-operations.HOST"
-    PORT: "interop-be-probing-eservice-operations.PORT"
     AWS_REGION: "interop-be-probing-common.AWS_REGION"
     DB_HOST: "common-probing-store.DB_HOST"
     DB_NAME: "common-probing-store.DB_NAME"  
