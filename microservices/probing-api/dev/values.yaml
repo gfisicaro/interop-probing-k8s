@@ -3,6 +3,7 @@ name: "interop-be-probing-api"
 roleArn: ""
 
 service:
+  create: true
   name: interop-be-probing-api
   ports:
     - port: 80

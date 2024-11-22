@@ -3,6 +3,7 @@ name: "interop-be-probing-eservice-operations"
 roleArn: ""
 
 service:
+  create: true
   name: interop-be-probing-eservice-operations
   ports:
     - port: 80
