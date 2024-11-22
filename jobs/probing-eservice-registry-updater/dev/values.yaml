@@ -11,7 +11,8 @@ configmap:
   INTEROP_PROBING_ESERVICE_REGISTRY_UPDATER_NAME: "interop-be-probing-eservice-registry-updater"
 
 job:
+  env:
+    LOG_LEVEL: INFO
   envFromConfigmaps:
-    LOG_LEVEL: "interop-be-probing-common.LOG_LEVEL"
     AWS_REGION: "interop-be-probing-common.AWS_REGION"
  
