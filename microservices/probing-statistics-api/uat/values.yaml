@@ -1,4 +1,4 @@
-name: "probing-statistics-api"
+name: "interop-be-probing-statistics-api"
 roleArn: ""
 
 service:
@@ -18,8 +18,6 @@ configMap:
   GRAPH_MAX_MONTHS: "3"
 
 deployment:
-  name: interop-be-probing-statistics-api
-  replicas: 1
   env:
     HOST: "0.0.0.0"
     PORT: "8080"

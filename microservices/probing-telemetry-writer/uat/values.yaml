@@ -1,4 +1,4 @@
-name: "probing-telemetry-writer"
+name: "interop-be-probing-telemetry-writer"
 roleArn: ""
 
 configMap:
@@ -9,8 +9,6 @@ configMap:
   INTEROP_PROBING_TELEMETRY_WRITER_NAME: "interop-be-probing-telemetry-writer"
 
 deployment:
-  name: interop-be-probing-telemetry-writer
-  replicas: 1
   envFromConfigmaps:
     AWS_REGION: "interop-be-probing-common.AWS_REGION"
     CONSUMER_POLLING_TIMEOUT_IN_SECONDS: "interop-be-probing-common.CONSUMER_POLLING_TIMEOUT_IN_SECONDS" 

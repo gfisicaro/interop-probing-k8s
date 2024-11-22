@@ -1,4 +1,4 @@
-name: "probing-caller"
+name: "interop-be-probing-eservice-registry-caller"
 roleArn: ""
 
 configMap:
@@ -12,8 +12,6 @@ configMap:
   INTEROP_PROBING_CALLER_NAME: "interop-be-probing-caller"
 
 deployment:
-  name: interop-be-probing-eservice-registry-caller
-  replicas: 1
   envFromConfigmaps:
     CONSUMER_POLLING_TIMEOUT_IN_SECONDS: "interop-be-probing-common.CONSUMER_POLLING_TIMEOUT_IN_SECONDS"
     AWS_REGION: "interop-be-probing-common.AWS_REGION"

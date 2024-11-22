@@ -1,4 +1,4 @@
-name: "probing-scheduler"
+name: "interop-be-probing-scheduler"
 roleArn: ""
 
 configMap:
@@ -9,8 +9,6 @@ configMap:
   INTEROP_PROBING_SCHEDULER_NAME: "interop-be-probing-scheduler"
 
 deployment:
-  name: interop-be-probing-scheduler
-  replicas: 1
   envFromConfigmaps:
     AWS_REGION: "interop-be-probing-common.AWS_REGION"
     API_OPERATIONS_BASEURL: "interop-be-probing-common.API_OPERATIONS_BASEURL"

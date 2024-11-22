@@ -1,4 +1,4 @@
-name: "probing-eservice-operations"
+name: "interop-be-probing-eservice-operations"
 roleArn: ""
 
 service:
@@ -16,8 +16,6 @@ configMap:
   INTEROP_PROBING_OPERATIONS_APP_NAME: "interop-be-probing-eservice-operations"
 
 deployment:
-  name: interop-be-probing-eservice-operations
-  replicas: 1
   env:
     HOST: "0.0.0.0"
     PORT: "8080"

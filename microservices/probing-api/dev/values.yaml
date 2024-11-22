@@ -1,4 +1,4 @@
-name: "probing-api"
+name: "interop-be-probing-api"
 roleArn: ""
 
 service:
@@ -14,8 +14,6 @@ configMap:
   INTEROP_PROBING_API_APP_NAME: "interop-be-probing-api"
 
 deployment:
-  name: interop-be-probing-api
-  replicas: 1
   env:
     HOST: "0.0.0.0"
     PORT: "8080"

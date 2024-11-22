@@ -1,4 +1,4 @@
-name: "probing-response-updater"
+name: "interop-be-probing-response-updater"
 roleArn: ""
 
 configMap:
@@ -6,8 +6,6 @@ configMap:
   INTEROP_PROBING_RESPONSE_UPDATER_NAME: "interop-be-probing-response-updater"
 
 deployment:
-  name: interop-be-probing-response-updater
-  replicas: 1
   envFromConfigmaps:
     AWS_REGION: "interop-be-probing-common.AWS_REGION"  
     CONSUMER_POLLING_TIMEOUT_IN_SECONDS: "interop-be-probing-common.CONSUMER_POLLING_TIMEOUT_IN_SECONDS"  
