@@ -1,16 +1,13 @@
 name: "probing-statistics-api"
 roleArn: ""
 
-deployment:
+service:
   name: interop-be-probing-statistics-api
-  replicas: 1
-  envFromConfigmaps:
-  HOST: "interop-be-probing-statistics-api.HOST"
-  PORT: "interop-be-probing-statistics-api.PORT"
-  LOG_LEVEL: "interop-be-probing-common.LOG_LEVEL"  
-  GRAPH_MAX_MONTHS: "interop-be-probing-statistics-api.GRAPH_MAX_MONTHS"
-  GRAPH_PERFORMANCE_TOLERANCE: "interop-be-probing-statistics-api.GRAPH_PERFORMANCE_TOLERANCE"
- 
+  ports:
+    - port: 80
+      targetPort: 8080
+      protocol: TCP
+
 configMap:
   TIMESTREAM_DATABASE: "interop_probing_telemetry"
   TIMESTREAM_TABLE: "probing_telemetry"
@@ -22,18 +19,21 @@ configMap:
   HOST: "0.0.0.0"
   PORT: "8080"
 
+deployment:
+  name: interop-be-probing-statistics-api
+  replicas: 1
+  envFromConfigmaps:
+    HOST: "interop-be-probing-statistics-api.HOST"
+    PORT: "interop-be-probing-statistics-api.PORT"
+    LOG_LEVEL: "interop-be-probing-common.LOG_LEVEL"  
+    GRAPH_MAX_MONTHS: "interop-be-probing-statistics-api.GRAPH_MAX_MONTHS"
+    GRAPH_PERFORMANCE_TOLERANCE: "interop-be-probing-statistics-api.GRAPH_PERFORMANCE_TOLERANCE"
+
 autoscaling:
   enabled: true
   minReplicas: 1
   maxReplicas: 10
   targetCPUUtilizationPercentage: 80
-
-service:
-  name: interop-be-probing-statistics-api
-  ports:
-    - port: 80
-      targetPort: 8080
-      protocol: TCP
 
 ingress:
   enabled: true
