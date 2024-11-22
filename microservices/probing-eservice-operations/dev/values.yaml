@@ -30,8 +30,6 @@ deployment:
     TOLERANCE_MULTIPLIER_IN_MINUTES: "interop-be-probing-eservice-operations.TOLERANCE_MULTIPLIER_IN_MINUTES"
     POLLING_FREQUENCY_THRESHOLD: "interop-be-probing-eservice-operations.POLLING_FREQUENCY_THRESHOLD"  
     CORS_ORIGIN_ALLOWED: "interop-be-probing-eservice-operations.CORS_ORIGIN_ALLOWED"
-  
-
 
 autoscaling:
   enabled: true
