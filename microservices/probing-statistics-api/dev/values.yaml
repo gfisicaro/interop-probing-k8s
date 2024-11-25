@@ -34,18 +34,7 @@ autoscaling:
         targetCPUUtilizationPercentage: 80
 
 ingress:
-  enabled: true
-  name: interop-be-probing-statistics-api
-  annotations:
-    alb.ingress.kubernetes.io/load-balancer-name: interop-probing-alb-dev
-  rules:
-    - host: ""
-      http:
-        paths:
-          - path: /telemetryData
-            pathType: Prefix
-            backend:
-              service:
-                name: interop-be-probing-statistics-api
-                port:
-                  number: 80
+	create: true
+	groupName: "interop-be-probing"
+	applicationPath: /telemetryData
+
