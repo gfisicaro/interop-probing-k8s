@@ -1,6 +1,7 @@
 name: "interop-be-probing-eservice-operations"
 
-roleArn: ""
+serviceAccount:
+  roleArn: ""
 
 service:
   create: true

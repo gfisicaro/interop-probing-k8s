@@ -1,6 +1,7 @@
 name: "interop-be-probing-telemetry-writer"
 
-roleArn: ""
+serviceAccount:
+  roleArn: ""
 
 service:
   create: false

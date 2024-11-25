@@ -1,6 +1,7 @@
 name: "interop-be-probing-api"
 
-roleArn: ""
+serviceAccount:
+  roleArn: ""
 
 service:
   create: true
