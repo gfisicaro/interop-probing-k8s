@@ -4,11 +4,8 @@ roleArn: ""
 
 service:
   create: true
-  name: interop-be-probing-api
-  ports:
-    - port: 80
-      targetPort: 8080
-      protocol: TCP
+  portName: http
+  containerPort: 8080
 
 configMap:
   CORS_ORIGIN_ALLOWED: "*"
@@ -26,10 +23,12 @@ deployment:
     TOLERANCE_MULTIPLIER_IN_MINUTES: "interop-be-probing-api.TOLERANCE_MULTIPLIER_IN_MINUTES"
 
 autoscaling:
-  enabled: true
-  minReplicas: 1
-  maxReplicas: 10
-  targetCPUUtilizationPercentage: 80
+    horizontal:
+      create: true 
+      config:
+        minReplicas: 1
+        maxReplicas: 10
+        targetCPUUtilizationPercentage: 80
 
 ingress:
   enabled: true

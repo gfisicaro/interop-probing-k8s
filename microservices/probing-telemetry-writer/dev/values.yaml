@@ -19,7 +19,9 @@ deployment:
     SQS_ENDPOINT_TELEMETRY_RESULT_QUEUE: "interop-be-probing-telemetry-writer.SQS_ENDPOINT_TELEMETRY_RESULT_QUEUE" 
 
 autoscaling:
-  enabled: true
-  minReplicas: 1
-  maxReplicas: 10
-  targetCPUUtilizationPercentage: 80
+    horizontal:
+      create: true 
+      config:
+        minReplicas: 1
+        maxReplicas: 10
+        targetCPUUtilizationPercentage: 80

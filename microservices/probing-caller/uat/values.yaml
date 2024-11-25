@@ -28,7 +28,9 @@ deployment:
     JWT_PAYLOAD_KID_KMS: "interop-be-probing-eservice-registry-caller.JWT_PAYLOAD_KID_KMS"
 
 autoscaling:
-  enabled: true
-  minReplicas: 1
-  maxReplicas: 10
-  targetCPUUtilizationPercentage: 80
+    horizontal:
+      create: true 
+      config:
+        minReplicas: 1
+        maxReplicas: 10
+        targetCPUUtilizationPercentage: 80

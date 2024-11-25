@@ -4,11 +4,8 @@ roleArn: ""
 
 service:
   create: true
-  name: interop-be-probing-eservice-operations
-  ports:
-    - port: 80
-      targetPort: 8080
-      protocol: TCP
+  portName: http
+  containerPort: 8080
 
 configMap:
   SCHEMA_NAME: "interop_probing_operational"
@@ -32,8 +29,10 @@ deployment:
     CORS_ORIGIN_ALLOWED: "interop-be-probing-eservice-operations.CORS_ORIGIN_ALLOWED"
 
 autoscaling:
-  enabled: true
-  minReplicas: 1
-  maxReplicas: 10
-  targetCPUUtilizationPercentage: 80
+    horizontal:
+      create: true 
+      config:
+        minReplicas: 1
+        maxReplicas: 10
+        targetCPUUtilizationPercentage: 80
 
